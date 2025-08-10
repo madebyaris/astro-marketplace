@@ -1,0 +1,32 @@
+---
+---
+
+<section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 text-white">
+  <div class="relative z-10 grid items-center gap-6 sm:grid-cols-[1.3fr_1fr]">
+    <div>
+      <h1 class="text-2xl font-semibold leading-tight sm:text-3xl">Belanja Hemat, Banyak Promo</h1>
+      <p class="mt-2 text-emerald-50">Cari produk favoritmu dengan cepat dan dapatkan harga terbaik.</p>
+      <form action="/store" class="mt-4 flex overflow-hidden rounded-xl bg-white">
+        <input
+          name="q"
+          placeholder="Cari di Astro Marketplace"
+          class="w-full px-4 py-3 text-gray-800 outline-none"
+        />
+        <button class="bg-emerald-600 px-5 text-white hover:bg-emerald-700">Cari</button>
+      </form>
+      <div class="mt-3 text-xs text-emerald-50">Contoh: iPhone, Skincare, Sepatu, Sembako</div>
+    </div>
+    <div class="hidden sm:block">
+      <div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-emerald-400/30 ring-1 ring-white/20">
+        <img
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1400&auto=format&fit=crop"
+          alt="Promo"
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+  <div class="pointer-events-none absolute -bottom-6 -left-10 h-36 w-36 rounded-full bg-white/10 blur-2xl"></div>
+</section>

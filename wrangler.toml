@@ -1,0 +1,14 @@
+name = "astro-marketplace"
+compatibility_date = "2025-08-09"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "astro_marketplace"
+database_id = "REPLACE_WITH_PROD_D1_ID"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+SESSION_SECRET = "REPLACE_WITH_SECURE_SECRET"

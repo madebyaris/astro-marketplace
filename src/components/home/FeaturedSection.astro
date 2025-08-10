@@ -1,0 +1,13 @@
+---
+import ProductGrid from '../ProductGrid';
+import { mockProducts } from '../../lib/mock-data';
+const { title = 'Produk Pilihan' } = Astro.props;
+---
+
+<section class="mt-8">
+  <div class="mb-4 flex items-center justify-between">
+    <h2 class="text-lg font-semibold">{title}</h2>
+    <a href="/store" class="text-sm text-emerald-700 hover:underline">Lihat Semua</a>
+  </div>
+  <ProductGrid client:only="react" products={mockProducts} />
+</section>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdminApp from '../components/admin/AdminApp';
+---
+
+<BaseLayout title="Admin" description="Admin dashboard for managing products and settings" canonicalUrl={Astro.url.href} isAdmin={true}>
+  <main class="mx-auto max-w-6xl px-6 py-16">
+    <div class="mb-6">
+      <h1 class="text-2xl font-semibold">Admin Dashboard</h1>
+      <p class="mt-1 text-sm text-gray-600">Kelola produk dan pengaturan situs.</p>
+    </div>
+    <AdminApp client:only="react" />
+  </main>
+</BaseLayout>

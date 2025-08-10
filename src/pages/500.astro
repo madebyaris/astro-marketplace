@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Something went wrong" description="An unexpected error occurred" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-3xl px-6 py-24 text-center">
+    <p class="text-sm font-semibold text-red-600">500</p>
+    <h1 class="mt-2 text-3xl font-bold tracking-tight">Terjadi kesalahan</h1>
+    <p class="mt-2 text-gray-600">Silakan coba lagi atau kembali ke beranda.</p>
+    <div class="mt-6 flex items-center justify-center gap-3">
+      <a href="/" class="rounded-lg bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700">Beranda</a>
+      <a href="/store" class="rounded-lg border border-gray-200 px-4 py-2 text-gray-700 hover:border-gray-300">Store</a>
+    </div>
+  </main>
+</BaseLayout>
+
+

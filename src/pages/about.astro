@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+---
+import { getPages } from '../lib/admin-store';
+const pages = getPages?.() || null;
+const aboutHtml = pages?.aboutHtml || '';
+---
+
+<BaseLayout title="Tentang Kami" description="Toko mandiri: beli langsung di website atau lewat marketplace pilihan Anda" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-6xl px-6 py-16">
+    <!-- JSON-LD Organization -->
+    <script type="application/ld+json">{JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Astro Marketplace',
+      url: Astro.url.origin,
+      logo: '/favicon.svg',
+      sameAs: [
+        'https://www.tokopedia.com/',
+        'https://shopee.co.id/'
+      ]
+    })}</script>
+
+    <!-- Hero -->
+    <section class="text-center">
+      <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">Penjual Mandiri</span>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Belanja Mudah. Pilihan Fleksibel.</h1>
+      <p class="mx-auto mt-3 max-w-2xl text-gray-600">
+        Kami berfokus pada pengalaman belanja yang cepat, aman, dan informatif. Anda dapat
+        <strong>membeli langsung</strong> dari website ini atau memilih <strong>marketplace</strong> favorit seperti Tokopedia atau Shopee.
+      </p>
+      <div class="mt-8 flex items-center justify-center gap-4">
+        <a href="/store" class="rounded-lg bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700">Lihat Produk</a>
+        <a href="/kebijakan" class="rounded-lg border border-gray-200 px-4 py-2 text-gray-700 hover:border-gray-300">Kebijakan Toko</a>
+      </div>
+    </section>
+
+    {aboutHtml ? (
+      <section class="prose prose-emerald mx-auto mt-10 max-w-none" set:html={aboutHtml} />
+    ) : null}
+
+    <!-- Value props -->
+    <section class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+      <div class="group rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md">
+        <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">✨</div>
+        <h2 class="mt-3 text-lg font-semibold">Produk Terpilih</h2>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600">Kualitas terkurasi dengan deskripsi yang jelas dan foto yang informatif.</p>
+      </div>
+      <div class="group rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md">
+        <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">⚡</div>
+        <h2 class="mt-3 text-lg font-semibold">Pengiriman Cepat</h2>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600">Proses 1–2 hari kerja, informasi resi dikirim otomatis.</p>
+      </div>
+      <div class="group rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200 transition hover:shadow-md">
+        <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">💬</div>
+        <h2 class="mt-3 text-lg font-semibold">Dukungan Responsif</h2>
+        <p class="mt-2 text-sm leading-relaxed text-gray-600">Tim kecil yang sigap membantu sebelum dan sesudah pembelian.</p>
+      </div>
+    </section>
+
+    <!-- How to buy -->
+    <section class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Cara Beli Langsung</h2>
+        <ol class="mt-3 list-decimal space-y-2 pl-6 text-sm text-gray-600">
+          <li>Buka halaman <a href="/store" class="underline">Store</a> dan pilih produk</li>
+          <li>Klik <span class="font-medium">Add to Cart</span> lalu lanjut ke Checkout</li>
+          <li>Isi data pengiriman dan konfirmasi pesanan</li>
+        </ol>
+      </div>
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Beli via Marketplace</h2>
+        <p class="mt-3 text-sm text-gray-600">Pada halaman produk, klik tombol <em>Beli di {`{Marketplace}`}</em> untuk diarahkan ke toko resmi kami.</p>
+        <p class="mt-2 text-xs text-gray-500">Catatan: untuk transaksi atau kendala di marketplace, mohon menghubungi dukungan marketplace terkait.</p>
+        <div class="mt-4 flex items-center gap-2 text-sm text-gray-600">
+          <span class="rounded-full bg-gray-100 px-3 py-1">Tokopedia</span>
+          <span class="rounded-full bg-gray-100 px-3 py-1">Shopee</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info blocks -->
+    <section class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Pengiriman & Pengembalian</h2>
+        <p class="mt-2 text-sm text-gray-600">Pengiriman 1–2 hari kerja. Pengembalian dalam 7 hari sesuai <a class="underline" href="/kebijakan">kebijakan</a>.</p>
+      </div>
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Privasi</h2>
+        <p class="mt-2 text-sm text-gray-600">Kami menjaga data Anda. Baca <a class="underline" href="/privacy">kebijakan privasi</a> untuk detailnya.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-20 rounded-2xl bg-gradient-to-tr from-emerald-50 to-white p-10 text-center ring-1 ring-emerald-100">
+      <h2 class="text-lg font-semibold text-emerald-900">Butuh bantuan untuk memilih produk?</h2>
+      <p class="mt-2 text-sm text-emerald-800">Hubungi kami — kami siap membantu.</p>
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <a href="/store" class="rounded-lg bg-emerald-600 px-5 py-2.5 text-white shadow-sm hover:bg-emerald-700">Belanja Sekarang</a>
+        <a href="/contact" class="rounded-lg border border-emerald-200 px-5 py-2.5 text-emerald-700 hover:bg-emerald-100">Hubungi Kami</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+

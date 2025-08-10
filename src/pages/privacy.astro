@@ -1,0 +1,26 @@
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPages } from '../lib/admin-store';
+const pages = getPages?.() || null;
+const privacyHtml = pages?.privacyHtml || '';
+---
+
+<BaseLayout title="Kebijakan Privasi" description="Bagaimana kami mengumpulkan, menggunakan, dan melindungi data Anda" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-3xl px-6 py-16">
+    <header class="text-center">
+      <h1 class="text-3xl font-bold tracking-tight">Kebijakan Privasi</h1>
+      <p class="mt-2 text-sm text-gray-600">Terakhir diperbarui: {new Date().toLocaleDateString('id-ID')}</p>
+    </header>
+
+    <section class="mt-8 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-gray-200">
+      {privacyHtml ? (
+        <article class="prose prose-emerald max-w-none" set:html={privacyHtml} />
+      ) : (
+        <article class="prose prose-emerald max-w-none">
+          <p>Kami menghargai privasi Anda. Dokumen ini menjelaskan informasi apa yang kami kumpulkan, bagaimana kami menggunakannya, dan hak Anda terkait data tersebut.</p>
+        </article>
+      )}
+    </section>
+  </main>
+</BaseLayout>
+
+

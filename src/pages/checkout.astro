@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CartProvider } from '../components/cart/CartContext';
+import CartSheet from '../components/cart/CartSheet';
+import CheckoutIsland from '../components/checkout/CheckoutIsland';
+---
+
+<BaseLayout title="Checkout" description="Review your cart and enter shipping details" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-4xl px-6 py-12">
+    <h1 class="text-2xl font-semibold">Checkout</h1>
+    <p class="mt-1 text-sm text-gray-600">Masukkan detail Anda dan konfirmasi pesanan.</p>
+
+    <CartProvider client:only="react">
+      <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="text-lg font-semibold">Ringkasan Pesanan</h2>
+          <div class="mt-3">
+            <CartSheet />
+          </div>
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold">Data Pelanggan</h2>
+          <div class="mt-3">
+            <CheckoutIsland />
+          </div>
+        </div>
+      </div>
+    </CartProvider>
+  </main>
+</BaseLayout>

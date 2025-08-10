@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import SubHeader from '../components/SubHeader.astro';
+import Footer from '../components/Footer.astro';
+const {
+  title = 'Astro Marketplace',
+  description = 'Simple marketplace with affiliate links',
+  ogImage,
+  canonicalUrl,
+  isAdmin = false,
+} = Astro.props;
+// Prefer explicitly provided canonicalUrl; fallback to current URL
+// If canonical domain is set in admin settings, rewrite canonical
+import { getSettings } from '../lib/admin-store';
+const settings = getSettings?.();
+const siteDomain = settings?.canonicalDomain?.trim();
+const canonicalBase = siteDomain && siteDomain.startsWith('http') ? siteDomain : undefined;
+const currentPath = Astro?.url?.pathname ?? '/';
+const canonical = canonicalUrl ?? (canonicalBase ? `${canonicalBase}${currentPath}` : (Astro?.url?.href ?? undefined));
+const og = ogImage ?? settings?.ogImage;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {og && <meta property="og:image" content={og} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {og && <meta name="twitter:image" content={og} />}
+  </head>
+  <body class="min-h-dvh bg-white text-gray-900 antialiased">
+    { !isAdmin && <SubHeader /> }
+    <Header isAdmin={isAdmin} />
+    <div class="mx-auto max-w-7xl">
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

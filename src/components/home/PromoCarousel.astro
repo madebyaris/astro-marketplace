@@ -1,0 +1,17 @@
+---
+---
+
+<section class="mt-6">
+  <div class="flex snap-x gap-4 overflow-x-auto pb-2">
+    {[1,2,3].map((n) => (
+      <a href="/store" class="snap-start block w-[320px] flex-none overflow-hidden rounded-xl ring-1 ring-gray-200">
+        <img
+          src={`https://picsum.photos/seed/promo-${n}/800/400`}
+          alt={`Promo ${n}`}
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </a>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StoreIsland from '../components/store/StoreIsland';
+---
+
+<BaseLayout title="Store" description="Browse products and discover deals" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-6xl px-6 py-12">
+    <StoreIsland client:only="react" />
+  </main>
+</BaseLayout>

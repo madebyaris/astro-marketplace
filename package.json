@@ -1,0 +1,33 @@
+{
+  "name": "astro-marketplace",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier -w .",
+    "lint": "eslint .",
+    "db:migrate:local": "wrangler d1 migrations apply astro_marketplace --local",
+    "db:seed:local": "wrangler d1 execute astro_marketplace --local --file migrations/0002_seed.sql && wrangler d1 execute astro_marketplace --local --file migrations/0003_seed_admin.sql",
+    "db:console:local": "wrangler d1 execute astro_marketplace --local --command \"SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;\""
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "astro": "latest",
+    "@astrojs/react": "latest",
+    "@astrojs/tailwind": "latest",
+    "@astrojs/cloudflare": "latest",
+    "tailwindcss": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest",
+    "typescript": "latest",
+    "eslint": "latest",
+    "prettier": "latest",
+    "wrangler": "latest"
+  }
+}

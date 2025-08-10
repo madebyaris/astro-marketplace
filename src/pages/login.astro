@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LoginForm from '../components/auth/LoginForm';
+---
+
+<BaseLayout title="Login" description="Sign in to your Astro Marketplace account" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-md px-6 py-16">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold tracking-tight">Masuk</h1>
+      <p class="mt-2 text-sm text-gray-600">Akses akun Anda untuk melanjutkan belanja.</p>
+    </div>
+
+    <div class="mt-8">
+      <LoginForm client:only="react" />
+    </div>
+    <p class="mt-6 text-center text-xs text-gray-500">Belum punya akun? Registrasi akan ditambahkan pada tahap berikutnya.</p>
+  </main>
+</BaseLayout>

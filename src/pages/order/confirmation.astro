@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Order Confirmed" description="Your order has been placed (test mode)" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-md px-6 py-16 text-center">
+    <h1 class="text-2xl font-semibold">Thank you!</h1>
+    <p class="mt-2 text-gray-600">Your order has been placed (test mode).</p>
+    <a class="mt-6 inline-block rounded-lg bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700" href="/store">Back to Store</a>
+  </main>
+</BaseLayout>

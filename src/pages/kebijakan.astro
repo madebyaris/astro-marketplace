@@ -1,0 +1,49 @@
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPages } from '../lib/admin-store';
+const pages = getPages?.() || null;
+const policyHtml = pages?.policyHtml || '';
+---
+
+<BaseLayout title="Kebijakan" description="Ketentuan pengiriman, pengembalian, garansi, dan penggunaan" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-4xl px-6 py-16">
+    <header class="text-center">
+      <h1 class="text-3xl font-bold tracking-tight">Kebijakan Toko</h1>
+      <p class="mt-2 text-sm text-gray-600">Transparan dan sederhana agar belanja terasa nyaman</p>
+    </header>
+
+    {policyHtml ? (
+      <section class="prose prose-emerald mt-8 max-w-none" set:html={policyHtml} />
+    ) : (
+    <section class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Pengiriman</h2>
+        <p class="mt-2 text-sm text-gray-600">Pesanan diproses 1–2 hari kerja. Nomor resi dikirim via email setelah paket diserahkan ke kurir.</p>
+      </div>
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Pengembalian</h2>
+        <p class="mt-2 text-sm text-gray-600">Pengembalian diterima dalam 7 hari setelah barang diterima, lengkap beserta kemasan dan aksesoris.</p>
+      </div>
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Garansi</h2>
+        <p class="mt-2 text-sm text-gray-600">Beberapa produk memiliki garansi pabrik. Rincian garansi tercantum pada halaman produk.</p>
+      </div>
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Ketentuan Penggunaan</h2>
+        <ul class="mt-2 list-disc space-y-2 pl-5 text-sm text-gray-600">
+          <li>Gunakan situs ini secara wajar dan sesuai hukum yang berlaku</li>
+          <li>Konten produk dapat berubah sewaktu-waktu tanpa pemberitahuan</li>
+          <li>Dengan bertransaksi, Anda menyetujui syarat dan kebijakan ini</li>
+        </ul>
+        <p class="mt-2 text-xs text-gray-500">Untuk transaksi melalui marketplace, bantuan dan kebijakan mengikuti platform terkait. Silakan hubungi dukungan resmi marketplace.</p>
+      </div>
+    </section>
+    )}
+
+    <section class="mt-12 rounded-2xl bg-emerald-50 p-7 ring-1 ring-emerald-100">
+      <h2 class="text-lg font-semibold text-emerald-900">Bantuan</h2>
+      <p class="mt-2 text-sm text-emerald-800">Untuk komplain, pengembalian, atau pertanyaan lain, silakan hubungi kami melalui <a class="underline" href="/contact">halaman kontak</a>.</p>
+    </section>
+  </main>
+</BaseLayout>
+
+

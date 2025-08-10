@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Hubungi Kami" description="Kontak dukungan dan pertanyaan produk" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-5xl px-6 py-16">
+    <!-- JSON-LD ContactPoint for SEO -->
+    <script type="application/ld+json">{JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Astro Marketplace',
+      contactPoint: [{
+        '@type': 'ContactPoint',
+        email: 'support@example.com',
+        contactType: 'customer support',
+        areaServed: 'ID',
+        availableLanguage: ['id']
+      }]
+    })}</script>
+
+    <!-- Hero -->
+    <header class="text-center">
+      <h1 class="text-3xl font-bold tracking-tight">Hubungi Kami</h1>
+      <p class="mx-auto mt-2 max-w-2xl text-sm text-gray-600">Kami siap membantu pertanyaan seputar produk, pesanan, dan pengiriman. Balasan biasanya dalam 1 hari kerja.</p>
+    </header>
+
+    <!-- Cards -->
+    <section class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <!-- Info -->
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <div class="flex items-start gap-3">
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">📧</div>
+          <div>
+            <h2 class="text-lg font-semibold">Kontak Langsung</h2>
+            <ul class="mt-3 space-y-2 text-sm text-gray-700">
+              <li>
+                Email: <a id="contact-email" class="text-emerald-700 underline" href="mailto:support@example.com">support@example.com</a>
+                <button class="ml-2 rounded border border-gray-200 px-2 py-0.5 text-xs text-gray-600 hover:bg-gray-50" onclick="copyEmail()">Salin</button>
+              </li>
+              <li>Jam operasional: Senin–Jumat, 09.00–17.00 WIB</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-4 rounded-lg bg-emerald-50 p-3 text-xs text-emerald-800">
+          Untuk transaksi di marketplace, mohon hubungi dukungan marketplace terkait.
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="rounded-2xl bg-white px-8 py-7 shadow-sm ring-1 ring-gray-200">
+        <h2 class="text-lg font-semibold">Formulir Pesan</h2>
+        <form class="mt-4 space-y-4" onsubmit="handleContactSubmit(event)">
+          <div>
+            <label class="mb-1 block text-sm text-gray-600" for="name">Nama</label>
+            <input id="name" class="w-full rounded-lg border border-gray-200 px-3 py-2 outline-none ring-emerald-500 focus:ring-2" name="name" placeholder="Nama" required />
+          </div>
+          <div>
+            <label class="mb-1 block text-sm text-gray-600" for="email">Email</label>
+            <input id="email" class="w-full rounded-lg border border-gray-200 px-3 py-2 outline-none ring-emerald-500 focus:ring-2" type="email" name="email" placeholder="Email" required />
+          </div>
+          <div>
+            <label class="mb-1 block text-sm text-gray-600" for="message">Pesan</label>
+            <textarea id="message" class="h-32 w-full rounded-lg border border-gray-200 px-3 py-2 outline-none ring-emerald-500 focus:ring-2" name="message" placeholder="Tulis pesan Anda..." required></textarea>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="flex-1 rounded-lg bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700" type="submit">Kirim via Email</button>
+            <a class="rounded-lg border border-gray-200 px-3 py-2 text-gray-700 hover:border-gray-300" href="/store">Kembali Belanja</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      function copyEmail() {
+        const email = 'support@example.com';
+        navigator.clipboard?.writeText(email);
+        alert('Email disalin: ' + email);
+      }
+      function handleContactSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        const subject = encodeURIComponent(`Contact from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+        window.location.href = `mailto:support@example.com?subject=${subject}&body=${body}`;
+      }
+    </script>
+  </main>
+</BaseLayout>
+
+

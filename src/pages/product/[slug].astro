@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { mockProducts } from '../../lib/mock-data';
+import { Price } from '../../components/Price';
+import AddToCartIsland from '../../components/cart/AddToCartIsland';
+import ProductGallery from '../../components/ProductGallery';
+
+const { slug } = Astro.params;
+const product = mockProducts.find((p) => p.slug === slug);
+
+if (!product) {
+  return Astro.redirect('/store');
+}
+const defaultSeoHtml = `
+  <h2>Deskripsi ${product.title}</h2>
+  <p>${product.title} dirancang untuk menampilkan contoh halaman produk dengan praktik SEO yang baik. Konten ini membantu mesin pencari memahami manfaat produk dan menjawab pertanyaan umum pelanggan.</p>
+  <h3>Keunggulan</h3>
+  <ul>
+    <li>Bahan berkualitas dan tahan lama</li>
+    <li>Pengiriman cepat ke seluruh Indonesia</li>
+    <li>Dukungan pelanggan yang responsif</li>
+  </ul>
+  <h3>Penggunaan</h3>
+  <p>Gunakan ${product.title} sesuai kebutuhan Anda sehari-hari. Konten deskriptif yang lengkap seperti ini cenderung meningkatkan CTR dan memaksimalkan visibilitas di SERP.</p>
+`;
+---
+
+<BaseLayout title={product.title} description={product.description} canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-6xl px-6 py-10">
+    <!-- JSON-LD Product Schema -->
+    <script type="application/ld+json">{JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: product.title,
+      description: product.description,
+      image: product.imageUrl ? [product.imageUrl] : [],
+      sku: product.slug,
+      offers: {
+        '@type': 'Offer',
+        price: (product.priceCents / 100).toFixed(2),
+        priceCurrency: 'IDR',
+        availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+        url: Astro.url.href,
+      },
+    })}</script>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <!-- Gallery -->
+      <div>
+        {Array.isArray(product.gallery) && product.gallery.length > 0 ? (
+          <ProductGallery client:only="react" images={[product.imageUrl, ...product.gallery]} alt={product.title} />
+        ) : (
+          <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+            <img src={product.imageUrl} alt={product.title} class="h-full w-full object-cover" />
+          </div>
+        )}
+      </div>
+
+      <!-- Info -->
+      <div>
+        <h1 class="text-2xl font-semibold leading-tight">{product.title}</h1>
+        <div class="mt-1 flex items-center gap-2 text-sm text-gray-500">
+          {typeof product.rating === 'number' && <span>⭐ {product.rating.toFixed(1)}</span>}
+          {typeof product.soldCount === 'number' && <span>• Terjual {Intl.NumberFormat('id-ID').format(product.soldCount)}</span>}
+          <span>• {product.location || 'Indonesia'}</span>
+        </div>
+
+        <div class="mt-4 text-3xl font-bold text-emerald-600"><Price cents={product.priceCents} /></div>
+        {product.freeShipping && (
+          <div class="mt-1 inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700">Bebas Ongkir</div>
+        )}
+
+        <div class="mt-6 space-y-4 text-sm text-gray-700">
+          <p>{product.description}</p>
+          <div class="rounded-xl border border-gray-200 p-3">
+            <div class="text-gray-500">Toko</div>
+            <div class="font-medium">{product.storeName || 'Store'}</div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          {product.allowDirectPurchase && product.stock > 0 ? (
+            <AddToCartIsland client:only="react" product={product} />
+          ) : null}
+          {product.affiliate ? (
+            <a
+              class="rounded-lg border border-gray-200 px-4 py-2 text-gray-700 hover:border-gray-300"
+              href={product.affiliate.targetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Beli di {product.affiliate.label}
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </div>
+
+    <!-- Heavy SEO description section -->
+    <section class="mt-16">
+      <h2 class="text-xl font-semibold">Deskripsi Produk</h2>
+      <article class="prose prose-emerald mt-4 max-w-none" set:html={product.descriptionHtml || defaultSeoHtml} />
+    </section>
+  </main>
+</BaseLayout>

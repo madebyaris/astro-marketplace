@@ -1,0 +1,89 @@
+---
+import CartCount from './cart/CartCount';
+import MegaMenu from './nav/MegaMenu';
+const { isAdmin = false } = Astro.props;
+---
+
+<header class="sticky top-0 z-30 border-b border-gray-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="flex items-center justify-between gap-3 py-3">
+      <!-- Left: Brand + Category -->
+      <div class="flex min-w-0 items-center gap-3">
+        <a href={isAdmin ? '/admin' : '/'} class="flex items-center gap-2 whitespace-nowrap">
+          <span class="inline-block h-6 w-6 rounded bg-gradient-to-br from-emerald-500 to-blue-500"></span>
+          <span class="hidden text-xl font-semibold text-emerald-600 sm:inline">{isAdmin ? 'admin' : 'astro'}</span>
+        </a>
+        {!isAdmin && <MegaMenu client:only="react" />}
+      </div>
+
+      <!-- Center: Big Search -->
+      {!isAdmin && (
+      <div class="hidden flex-1 sm:block">
+        <form action="/store" class="" role="search" aria-label="Site search">
+          <div class="relative">
+            <label for="global-search" class="sr-only">Cari produk</label>
+            <input
+              id="global-search"
+              name="q"
+              placeholder="Cari di Astro Marketplace"
+              class="w-full rounded-full border border-gray-300/80 bg-white px-4 py-2.5 pr-12 text-[15px] text-gray-900 outline-none ring-emerald-500 focus:ring-2"
+            />
+            <button class="absolute right-1 top-1 inline-flex h-9 items-center rounded-full bg-emerald-600 px-4 text-sm font-medium text-white hover:bg-emerald-700">
+              Cari
+            </button>
+          </div>
+        </form>
+      </div>
+      )}
+
+      <!-- Right: Icons and user -->
+      <div class="flex items-center gap-2">
+        {!isAdmin && (<a href="/store" title="Store" class="hidden rounded-lg p-2 text-gray-600 hover:bg-gray-50 sm:inline">
+          <span class="sr-only">Store</span>
+          🛍️
+        </a>)}
+        <!-- Removed notifications/messages to simplify navigation for independent seller -->
+        {!isAdmin && (
+        <a href="/cart" title="Cart" class="relative rounded-lg p-2 text-gray-700 hover:bg-gray-50">
+          <span class="sr-only">Cart</span>
+          🛒
+          <CartCount client:only="react" variant="badge" />
+        </a>
+        )}
+        {!isAdmin && (
+        <a href="/login" class="hidden items-center gap-2 rounded-full border border-gray-200 bg-white px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50 sm:inline-flex">
+          <span class="inline-block h-6 w-6 overflow-hidden rounded-full bg-gray-200">
+            <img src="https://i.pravatar.cc/40" alt="avatar" class="h-full w-full object-cover" />
+          </span>
+          <span class="max-w-[8rem] truncate">Masuk</span>
+        </a>
+        )}
+        {!isAdmin && (
+        <button class="inline-flex rounded-lg border border-gray-200 p-2 sm:hidden" aria-label="Open search">
+          🔍
+        </button>
+        )}
+      </div>
+    </div>
+
+    <!-- Mobile search row -->
+    {!isAdmin && (
+    <div class="pb-3 sm:hidden">
+      <form action="/store" role="search" aria-label="Site search (mobile)">
+        <div class="relative">
+          <label for="global-search-mobile" class="sr-only">Cari produk</label>
+          <input
+            id="global-search-mobile"
+            name="q"
+            placeholder="Cari di Astro Marketplace"
+            class="w-full rounded-full border border-gray-300/80 bg-white px-4 py-2.5 pr-12 text-[15px] text-gray-900 outline-none ring-emerald-500 focus:ring-2"
+          />
+          <button class="absolute right-1 top-1 inline-flex h-9 items-center rounded-full bg-emerald-600 px-4 text-sm font-medium text-white hover:bg-emerald-700">
+            Cari
+          </button>
+        </div>
+      </form>
+    </div>
+    )}
+  </div>
+</header>

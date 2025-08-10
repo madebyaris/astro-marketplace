@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSearch from '../components/home/HeroSearch.astro';
+import CategoryPills from '../components/home/CategoryPills.astro';
+import PromoCarousel from '../components/home/PromoCarousel.astro';
+import FeaturedSection from '../components/home/FeaturedSection.astro';
+import BenefitsStrip from '../components/home/BenefitsStrip.astro';
+---
+
+<BaseLayout title="Astro Marketplace" description="Simple marketplace with affiliate links and great deals" canonicalUrl={Astro.url.href}>
+  <main class="mx-auto max-w-6xl px-6 py-8">
+    <HeroSearch />
+    <CategoryPills />
+    <PromoCarousel />
+    <FeaturedSection title="Produk Pilihan" />
+    <FeaturedSection title="Lagi Trending" />
+    <BenefitsStrip />
+  </main>
+</BaseLayout>
