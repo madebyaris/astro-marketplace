@@ -8,6 +8,8 @@ Astro Marketplace is a monolithic storefront + admin starter built with Astro, R
 
 It runs on Cloudflare Pages + Functions and uses D1 (SQLite locally). The current admin backend is in‑memory for rapid iteration; you can later swap to Cloudflare D1 for persistence.
 
+![Astro Marketplace Frontpage](asset-git/frontpage.png)
+
 ## Features
 - Storefront pages: Home (`/`), Store (`/store`), Product (`/product/[slug]`), Cart (`/cart`), Checkout (`/checkout`)
 - Content pages: About (`/about`), Privacy (`/privacy`), Kebijakan/Policy (`/kebijakan`), Contact (`/contact`)
