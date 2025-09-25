@@ -40,6 +40,7 @@ Note: The current admin backend is an in-memory store for rapid iteration. For p
 Prerequisites:
 - Node.js 20+ and npm
 - Optional: Cloudflare Wrangler CLI (`npm i -g wrangler`) for local D1
+- Cloudflare account with D1 + KV enabled (for deployment)
 
 Steps:
 ```bash
@@ -47,6 +48,10 @@ npm install
 npm run dev
 ```
 The site will be available at `http://localhost:4321`.
+
+> Running with real D1 data during `npm run dev`
+>
+> After you run the Wrangler migration/seed commands below, the dev server automatically picks up the SQLite file under `.wrangler/state/...` and attaches it as the `env.DB` binding. If you store your DB elsewhere, set `D1_LOCAL_PATH=/absolute/path/to.sqlite` before starting `npm run dev`.
 
 ### Database (local)
 ```bash
@@ -59,6 +64,14 @@ npm run db:seed:local
 # Inspect tables
 npm run db:console:local
 ```
+
+If you haven't created the local D1 database yet:
+```bash
+# Create a local sqlite file managed by Wrangler
+wrangler d1 create astro_marketplace
+```
+
+> Tip: Wrangler stores the local DB under `.wrangler/state/`.
 
 Admin seed: `migrations/0003_seed_admin.sql` inserts a demo admin user (`arissetia.m@gmail.com`) with a placeholder hash. Replace with a secure bcrypt/argon2 hash before production.
 
@@ -82,6 +95,14 @@ Admin seed: `migrations/0003_seed_admin.sql` inserts a demo admin user (`arisset
 - In `wrangler.toml`, set D1 binding and any vars you need
   - `DB` (D1) and `SESSION` (KV) are scaffolded
 - Connect the repo to Cloudflare Pages (enable Functions)
+- Provision resources:
+  ```bash
+  wrangler d1 create astro_marketplace
+  wrangler kv:namespace create SESSION
+  wrangler secret put SESSION_SECRET
+  ```
+- Update `wrangler.toml` with the generated IDs.
+- When running in Pages Functions, bindings are accessible via `context.locals.runtime.env` inside Astro endpoints.
 
 ## API
 - `GET /api/health` → `{ status: "ok" }`

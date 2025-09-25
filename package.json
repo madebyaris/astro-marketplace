@@ -18,16 +18,16 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "astro": "latest",
+    "@astrojs/cloudflare": "latest",
     "@astrojs/react": "latest",
     "@astrojs/tailwind": "latest",
-    "@astrojs/cloudflare": "latest",
-    "tailwindcss": "latest",
-    "postcss": "latest",
+    "astro": "latest",
     "autoprefixer": "latest",
-    "typescript": "latest",
     "eslint": "latest",
+    "postcss": "latest",
     "prettier": "latest",
-    "wrangler": "latest"
+    "tailwindcss": "latest",
+    "typescript": "latest",
+    "wrangler": "^4.40.0"
   }
 }

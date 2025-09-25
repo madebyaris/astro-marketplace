@@ -1,6 +1,10 @@
 name = "astro-marketplace"
 compatibility_date = "2025-08-09"
 
+# Replace placeholder IDs with real ones after running:
+#   wrangler d1 create astro_marketplace
+#   wrangler kv:namespace create SESSION
+
 [[d1_databases]]
 binding = "DB"
 database_name = "astro_marketplace"
@@ -12,3 +16,4 @@ id = "REPLACE_WITH_KV_NAMESPACE_ID"
 
 [vars]
 SESSION_SECRET = "REPLACE_WITH_SECURE_SECRET"
+# Set via `wrangler secret put SESSION_SECRET` for production.

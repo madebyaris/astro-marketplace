@@ -1,0 +1,79 @@
+---
+alwaysApply: true
+---
+
+# SDD (Spec-Driven Development) System Overview
+
+This project implements a comprehensive **Spec-Driven Development** workflow using three core commands that work together to transform ideas into structured implementation plans.
+
+## Core Philosophy
+Spec-Driven Development emphasizes creating detailed, executable specifications **before** writing code, ensuring:
+- Requirements are clear before implementation
+- Technical decisions are well-planned and documented  
+- Development tasks are structured and manageable
+- Team collaboration is enhanced through shared understanding
+
+## SDD 2.5: Agile-Compatible Lightweight Workflow (Default)
+
+### Primary Approach (80% of features)
+
+#### `/brief` - 30-Minute Planning
+Transform ideas into actionable development plans in 30 minutes
+- **Time**: 30 minutes total planning before coding
+- **Output**: Single [feature-brief.md](mdc:specs/active/[task-id]/feature-brief.md) with essential context
+- **Philosophy**: "Just enough" planning to start coding confidently
+- **Key Elements**: Problem/users, quick research, requirements, next actions
+
+#### `/evolve` - Living Documentation
+Keep specifications aligned with reality during development
+- **Purpose**: Continuous updates as discoveries are made during coding
+- **Output**: Updates existing feature-brief.md with changelog
+- **Philosophy**: Specifications as living documents that evolve with code
+
+### Advanced Approach (20% of complex features) - SDD 2.0
+
+For complex, high-risk, or multi-team features requiring comprehensive planning:
+
+#### Full Workflow: `/research` → `/specify` → `/plan` → `/tasks` → `/implement`
+- **Use When**: Feature complexity high, multiple stakeholders, significant architectural impact
+- **Time Investment**: 4-6 hours upfront planning
+- **Output**: Complete documentation suite (research.md, spec.md, plan.md, tasks.md)
+
+## Decision Framework
+
+**Start with `/brief`** unless feature meets ANY of these criteria:
+- Multiple teams involved
+- Architectural changes required
+- High business risk/compliance needs
+- Uncertain technical approach
+- 3+ week development timeline
+
+**Upgrade from brief to full SDD** if complexity discovered during implementation
+
+## File Organization
+
+The system uses a context-engineering approach with:
+- **Active tasks**: [specs/active/[task-id]/](mdc:specs/active/) - Tasks currently in development
+- **Task artifacts**: research.md, spec.md, plan.md, tasks.md, todo-list.md, progress.md
+- **Templates**: [.sdd/templates/](mdc:.sdd/templates/) - Reusable document templates  
+- **Configuration**: [.sdd/config.json](mdc:.sdd/config.json) - System settings and preferences
+- **Guidelines**: [.sdd/guidelines.md](mdc:.sdd/guidelines.md) - Development methodology guide
+
+## Task ID Convention
+- Use semantic slugs: `user-auth-system`, `payment-integration`, `dashboard-redesign`
+- Avoid generic numbering: `feat-001` (legacy approach)
+- Focus on meaningful, searchable identifiers
+
+## Quality Assurance
+Each phase includes comprehensive review checklists and validation rules to ensure:
+- Specifications are clear and testable
+- Plans are technically sound and scalable
+- Tasks are actionable and properly estimated
+- Documentation maintains consistency across the project
+
+## Collaboration Support
+The system supports multi-developer workflows with:
+- Assignee tracking for features and tasks
+- Progress monitoring through status updates
+- Review workflows with feedback integration
+- Audit trails for change management

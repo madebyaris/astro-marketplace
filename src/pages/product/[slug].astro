@@ -4,6 +4,7 @@ import { mockProducts } from '../../lib/mock-data';
 import { Price } from '../../components/Price';
 import AddToCartIsland from '../../components/cart/AddToCartIsland';
 import ProductGallery from '../../components/ProductGallery';
+import AffiliateButton from '../../components/AffiliateButton';
 
 const { slug } = Astro.params;
 const product = mockProducts.find((p) => p.slug === slug);
@@ -77,20 +78,35 @@ const defaultSeoHtml = `
           </div>
         </div>
 
-        <div class="mt-6 flex gap-3">
+        <div class="mt-6 space-y-4">
           {product.allowDirectPurchase && product.stock > 0 ? (
             <AddToCartIsland client:only="react" product={product} />
           ) : null}
-          {product.affiliate ? (
-            <a
-              class="rounded-lg border border-gray-200 px-4 py-2 text-gray-700 hover:border-gray-300"
-              href={product.affiliate.targetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Beli di {product.affiliate.label}
-            </a>
-          ) : null}
+          
+          {/* Affiliate Links */}
+          <div class="space-y-3">
+            {product.affiliate ? (
+              <AffiliateButton
+                client:only="react"
+                productId={product.id}
+                marketplace={product.affiliate.label}
+                targetUrl={product.affiliate.targetUrl}
+                variant="marketplace"
+              />
+            ) : null}
+            
+            {/* Marketplace URLs */}
+            {product.marketplaceUrls && Object.entries(product.marketplaceUrls).filter(([_, url]) => url).map(([marketplace, url]) => (
+              <AffiliateButton
+                client:only="react"
+                productId={product.id}
+                marketplace={marketplace}
+                targetUrl={url}
+                variant="marketplace"
+                className="w-full"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
