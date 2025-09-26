@@ -73,11 +73,11 @@ wrangler d1 create astro_marketplace
 
 > Tip: Wrangler stores the local DB under `.wrangler/state/`.
 
-Admin seed: `migrations/0003_seed_admin.sql` inserts a demo admin user (`arissetia.m@gmail.com`) with a placeholder hash. Replace with a secure bcrypt/argon2 hash before production.
+Admin seed: `migrations/0003_seed_admin.sql` inserts a demo admin user (`arissetia.m@gmail.com`) with password `Admin123!`. Replace with a secure hash before production.
 
 ## Admin
 - URL: `/admin`
-- Data is kept in-memory while the dev server runs (restart resets in-memory edits). DB migrations cover storefront tables; admin store to be wired to D1 next.
+- Auth required: login via `/login`; sessions stored in KV (`SESSION`) with HttpOnly cookies guarding `/admin` routes/APIs.
 - Header automatically switches to an admin-focused view on admin routes.
 
 ### Admin APIs (in-memory)

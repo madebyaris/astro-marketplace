@@ -11,13 +11,13 @@
 - [x] Configure D1 binding (e.g., `DB`).
 - [x] Configure KV namespace for sessions (`SESSION`).
 - [ ] Create D1 database (prod) in Cloudflare dashboard.
-- [ ] Create local SQLite DB via Wrangler (as needed).
+- [x] Create local SQLite DB via Wrangler and auto-bind during dev (`npm run db:migrate:local`, middleware).
 
 ### Phase 2 — Data Schema
 - [x] Create tables: users, products, categories, product_categories, affiliate_links, orders, order_items, settings.
 - [x] Seed script: settings row, sample products + affiliate link.
-- [ ] Seed script: admin user (with hashed password).
-- [ ] Data access layer for SQLite (dev) and D1 (prod) with repository functions.
+- [x] Seed script: admin user (placeholder hash via `migrations/0003_seed_admin.sql`).
+- [x] Data access layer for SQLite (dev) and D1 (prod) with repository functions.
 
 ### Phase 3 — Auth
 - [ ] Email/password registration + login (hash passwords with bcrypt/argon2).
