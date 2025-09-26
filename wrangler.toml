@@ -1,5 +1,6 @@
 name = "astro-marketplace"
-compatibility_date = "2025-08-09"
+compatibility_date = "2025-01-09"
+main = "dist/index.js"
 
 # Replace placeholder IDs with real ones after running:
 #   wrangler d1 create astro_marketplace

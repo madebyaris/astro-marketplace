@@ -1,24 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+const DEFAULT_REDIRECT = '/admin';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [redirect, setRedirect] = useState(DEFAULT_REDIRECT);
 
-  // Frontend-only mock login (no auth context)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const next = params.get('redirect');
+    if (next) setRedirect(next);
+  }, []);
 
   return (
     <form
       className="space-y-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200"
       onSubmit={async (e) => {
         e.preventDefault();
-        if (!email) return;
+        if (!email || !password) return;
         setPending(true);
+        setError(null);
         try {
-          await new Promise((r) => setTimeout(r, 300));
-          // Optionally persist a flag to simulate session
-          try { window.localStorage.setItem('astro_marketplace_mock_user', JSON.stringify({ email })); } catch {}
-          window.location.href = '/store';
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+          });
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            setError(data.error || 'Login gagal, silakan coba lagi.');
+            return;
+          }
+          window.location.href = redirect;
+        } catch (err) {
+          console.error(err);
+          setError('Terjadi kesalahan. Silakan coba lagi.');
         } finally {
           setPending(false);
         }
@@ -48,6 +67,7 @@ export default function LoginForm() {
           required
         />
       </div>
+      {error ? <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p> : null}
       <button
         type="submit"
         disabled={pending}

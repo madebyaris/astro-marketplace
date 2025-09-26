@@ -5,7 +5,7 @@
 INSERT OR IGNORE INTO users (email, password_hash, is_admin)
 VALUES (
   'arissetia.m@gmail.com',
-  '$2b$12$2qHq3i7K9zVf1K8kWbD2huUqk8A1tB2Qnq7H9dK8f5b1a7X8pYbSe', -- bcrypt-style placeholder for SuksesSelalu1234
+  '$2a$10$X2nQb4tOnAj1gKNuRkBisuNZ5FtyltBCMeUXV3pT7Alns.2ALmHLy', -- bcrypt hash for Admin123!
   1
 );
 
