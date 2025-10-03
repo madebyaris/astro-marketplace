@@ -2,9 +2,11 @@
 
 > Your independent, portable marketplace platform. Deploy anywhere, sell everywhere. 🌍
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-madebyaris%2Fastro--marketplace-blue?logo=github)](https://github.com/madebyaris/astro-marketplace)
 [![Deploy](https://img.shields.io/badge/Deploy-Ready-brightgreen)](#-quick-start)
 [![Build](https://img.shields.io/badge/Build-Passing-success)](#-deployment)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#-license)
+[![Stars](https://img.shields.io/github/stars/madebyaris/astro-marketplace?style=social)](https://github.com/madebyaris/astro-marketplace)
 
 ![Astro Marketplace Frontpage](asset-git/frontpage.png)
 
@@ -474,8 +476,8 @@ npm run build
 ### Getting Help 💬
 
 - 📖 Check [documentation](#-documentation)
-- 🐛 Search [issues](https://github.com/yourusername/astro-marketplace/issues)
-- 💡 Ask in [discussions](https://github.com/yourusername/astro-marketplace/discussions)
+- 🐛 Search [issues](https://github.com/madebyaris/astro-marketplace/issues)
+- 💡 Ask in [discussions](https://github.com/madebyaris/astro-marketplace/discussions)
 
 ---
 
@@ -547,7 +549,7 @@ We love contributions! 💚
 
 ### Vote on Features 🗳️
 
-Have an idea? [Open a discussion](https://github.com/yourusername/astro-marketplace/discussions)!
+Have an idea? [Open a discussion](https://github.com/madebyaris/astro-marketplace/discussions)!
 
 ---
 
@@ -581,15 +583,15 @@ Special thanks to:
 ### Get Help 🆘
 
 - 📖 Read the [documentation](#-documentation)
-- 🐛 Report [issues](https://github.com/yourusername/astro-marketplace/issues)
-- 💡 Request [features](https://github.com/yourusername/astro-marketplace/issues/new)
-- 💬 Join [discussions](https://github.com/yourusername/astro-marketplace/discussions)
+- 🐛 Report [issues](https://github.com/madebyaris/astro-marketplace/issues)
+- 💡 Request [features](https://github.com/madebyaris/astro-marketplace/issues/new)
+- 💬 Join [discussions](https://github.com/madebyaris/astro-marketplace/discussions)
 
 ### Stay Connected 📢
 
-- ⭐ Star this repo for updates
-- 👀 Watch for new releases
-- 🐦 Follow on Twitter [@yourusername](https://twitter.com/yourusername)
+- ⭐ [Star this repo](https://github.com/madebyaris/astro-marketplace) for updates
+- 👀 [Watch for releases](https://github.com/madebyaris/astro-marketplace/releases)
+- 🐦 Follow [@madebyaris](https://twitter.com/madebyaris) on Twitter
 
 ---
 
@@ -597,7 +599,7 @@ Special thanks to:
 
 ## 🎉 Ready to Launch Your Store?
 
-```bash
+  ```bash
 npm install && npm run dev
 ```
 
@@ -605,10 +607,10 @@ npm install && npm run dev
 
 ---
 
-⭐ **Star us on GitHub** · 🐛 **Report Issues** · 💡 **Request Features**
+⭐ **[Star us on GitHub](https://github.com/madebyaris/astro-marketplace)** · 🐛 **[Report Issues](https://github.com/madebyaris/astro-marketplace/issues)** · 💡 **[Request Features](https://github.com/madebyaris/astro-marketplace/issues/new)**
 
 [🚀 Get Started](#-quick-start) · [📖 Documentation](#-documentation) · [💬 Support](#-support)
 
-Made with 💚 by independent sellers, for independent sellers
+Made with 💚 by [@madebyaris](https://github.com/madebyaris) for independent sellers
 
 </div>
