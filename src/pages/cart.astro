@@ -10,9 +10,7 @@ import CartSheet from '../components/cart/CartSheet';
     <p class="mt-1 text-sm text-gray-600">Periksa item di keranjang Anda sebelum checkout.</p>
 
     <CartProvider client:only="react">
-      <div class="mt-6">
-        <CartSheet />
-      </div>
+      <CartSheet client:only="react" />
       <div class="mt-4 flex items-center gap-3">
         <a href="/store" class="rounded-lg border border-gray-200 px-3 py-2 text-gray-700 hover:border-gray-300">Lanjut Belanja</a>
         <a href="/checkout" class="rounded-lg bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700">Checkout</a>

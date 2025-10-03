@@ -1,0 +1,17 @@
+name = "astro-marketplace-server"
+compatibility_date = "2024-01-01"
+
+# Cloudflare KV for sessions (optional - can use memory/redis instead)
+[[kv_namespaces]]
+binding = "SESSION"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+SESSION_SECRET = "REPLACE_WITH_SECURE_SECRET"
+TURSO_DATABASE_URL = "REPLACE_WITH_TURSO_URL"
+TURSO_AUTH_TOKEN = "REPLACE_WITH_TURSO_TOKEN"
+SESSION_DRIVER = "cloudflare-kv"
+
+# Set via `wrangler secret put` for production
+# wrangler secret put SESSION_SECRET
+# wrangler secret put TURSO_AUTH_TOKEN

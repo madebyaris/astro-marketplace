@@ -2,12 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
----
-import { getPages } from '../lib/admin-store';
-const pages = getPages?.() || null;
-const aboutHtml = pages?.aboutHtml || '';
----
-
 <BaseLayout title="Tentang Kami" description="Toko mandiri: beli langsung di website atau lewat marketplace pilihan Anda" canonicalUrl={Astro.url.href}>
   <main class="mx-auto max-w-6xl px-6 py-16">
     <!-- JSON-LD Organization -->
@@ -37,9 +31,6 @@ const aboutHtml = pages?.aboutHtml || '';
       </div>
     </section>
 
-    {aboutHtml ? (
-      <section class="prose prose-emerald mx-auto mt-10 max-w-none" set:html={aboutHtml} />
-    ) : null}
 
     <!-- Value props -->
     <section class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
