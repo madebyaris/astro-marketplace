@@ -11,14 +11,9 @@ const {
   isAdmin = false,
 } = Astro.props;
 // Prefer explicitly provided canonicalUrl; fallback to current URL
-// If canonical domain is set in admin settings, rewrite canonical
-import { getSettings } from '../lib/admin-store';
-const settings = getSettings?.();
-const siteDomain = settings?.canonicalDomain?.trim();
-const canonicalBase = siteDomain && siteDomain.startsWith('http') ? siteDomain : undefined;
 const currentPath = Astro?.url?.pathname ?? '/';
-const canonical = canonicalUrl ?? (canonicalBase ? `${canonicalBase}${currentPath}` : (Astro?.url?.href ?? undefined));
-const og = ogImage ?? settings?.ogImage;
+const canonical = canonicalUrl ?? Astro?.url?.href ?? undefined;
+const og = ogImage;
 ---
 
 <html lang="en">

@@ -1,0 +1,23 @@
+{
+  "name": "astro-marketplace-server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx nitropack dev",
+    "build": "npx nitropack build",
+    "preview": "npx nitropack preview",
+    "build:cloudflare": "npx nitropack build --preset cloudflare",
+    "build:node": "npx nitropack build --preset node-server",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "nitropack": "latest",
+    "unstorage": "latest",
+    "@libsql/client": "latest",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6"
+  }
+}

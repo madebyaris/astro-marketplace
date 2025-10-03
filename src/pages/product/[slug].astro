@@ -6,6 +6,12 @@ import AddToCartIsland from '../../components/cart/AddToCartIsland';
 import ProductGallery from '../../components/ProductGallery';
 import AffiliateButton from '../../components/AffiliateButton';
 
+export async function getStaticPaths() {
+  return mockProducts.map((product) => ({
+    params: { slug: product.slug },
+  }));
+}
+
 const { slug } = Astro.params;
 const product = mockProducts.find((p) => p.slug === slug);
 
@@ -112,9 +118,18 @@ const defaultSeoHtml = `
     </div>
 
     <!-- Heavy SEO description section -->
-    <section class="mt-16">
-      <h2 class="text-xl font-semibold">Deskripsi Produk</h2>
-      <article class="prose prose-emerald mt-4 max-w-none" set:html={product.descriptionHtml || defaultSeoHtml} />
-    </section>
+  <section class="mt-16">
+    <h2 class="text-xl font-semibold">Deskripsi Produk</h2>
+    <article class="prose prose-emerald mt-4 max-w-none">
+      <h3>Tentang {product.title}</h3>
+      <p>{product.description}</p>
+      <h3>Keunggulan</h3>
+      <ul>
+        <li>Bahan berkualitas dan tahan lama</li>
+        <li>Pengiriman cepat ke seluruh Indonesia</li>
+        <li>Dukungan pelanggan yang responsif</li>
+      </ul>
+    </article>
+  </section>
   </main>
 </BaseLayout>
